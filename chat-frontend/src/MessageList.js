@@ -1,5 +1,6 @@
 import './MessageList.css';
 import React, {useState, useEffect} from "react";
+import ChatItem from "./ChatItem";
 
 var xhr;
 
@@ -9,7 +10,7 @@ function MessageList(props) {
 
     useEffect(() => {
         sendRequest();
-    }, [])
+    }, []);
 
     const valueToLabel = (g) => {
         var label = "?";
@@ -23,16 +24,13 @@ function MessageList(props) {
         return label;
     }
 
-    const toMessage = (m) => {
+    const toMessage = (m, idx) => {
         var g = valueToLabel(m.sentTo);
-        return (<tbody key={m.guid}>
-        <tr>
-            <td>{m.content}</td>
-            <td>{m.sender}</td>
-            <td>{g}</td>
-            <td>{m.dateTime}</td>
-        </tr>
-        </tbody>);
+        var type = m.sender == "noone";
+        return (
+            <ChatItem key={idx} type={type} content={m.content} date={m.dateTime} sender={m.sender}
+                      sentTo={g}/>
+        );
     }
 
     const sendRequest = () => {
@@ -52,17 +50,9 @@ function MessageList(props) {
     props.eventDispatcher.subscribe("addMessage", sendRequest);
 
     return (
-        <table className={"message-list"}>
-            <tbody>
-            <tr>
-                <th>Message</th>
-                <th>Sender</th>
-                <th>SentTo</th>
-                <th>DateTime</th>
-            </tr>
-            </tbody>
+        <div className={"message-list"}>
             {messages?.map(toMessage)}
-        </table>
+        </div>
     );
 }
 

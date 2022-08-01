@@ -7,7 +7,8 @@ const senders = [
     {value: 'robert', label: 'Robert'},
     {value: 'john', label: 'John'},
     {value: 'mary', label: 'Mary'},
-    {value: 'patricia', label: 'Patricia'}
+    {value: 'patricia', label: 'Patricia'},
+    {value: 'noone', label: 'NOONE'}
 ]
 
 // const messages = [
@@ -38,6 +39,7 @@ const eventDispatcher = {
 // - The page doesnt update if post request sent from POSTMAN
 // - Message Form update
 // - New message scroll down like hey app message panel
+// - CSS Overhaul
 
 function App() {
     return (

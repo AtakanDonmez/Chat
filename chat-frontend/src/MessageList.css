@@ -1,14 +1,6 @@
 .message-list {
-    border-collapse: collapse;
-    margin-top: 20px;
     margin-bottom: 20px;
     width: 100%;
-}
-
-table, th, td {
-    border: 1px solid black;
-}
-
-th, td {
-    padding: 8px;
+    display: flex;
+    flex-direction: column;
 }

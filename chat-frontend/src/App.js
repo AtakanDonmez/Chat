@@ -37,6 +37,7 @@ const eventDispatcher = {
 // - stop refresh after submit
 // - The page doesnt update if post request sent from POSTMAN
 // - Message Form update
+// - New message scroll down like hey app message panel
 
 function App() {
     return (
@@ -45,10 +46,10 @@ function App() {
                 Chat
             </h1>
             <div>
-                <MessageForm senders={senders} eventDispatcher={eventDispatcher} />
+                <MessageList senders={senders} eventDispatcher={eventDispatcher} />
             </div>
             <div>
-                <MessageList senders={senders} eventDispatcher={eventDispatcher} />
+                <MessageForm senders={senders} eventDispatcher={eventDispatcher} />
             </div>
         </div>
     );

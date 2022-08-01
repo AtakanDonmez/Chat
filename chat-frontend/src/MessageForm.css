@@ -1,0 +1,33 @@
+.message-form {
+    border: 1px solid #666;
+    padding: 8px;
+    background-color: #aaa;
+}
+
+.message-form-element {
+    border: 1px solid #666;
+    padding: 5px;
+    background-color: #fff;
+    margin-left: 3px;
+    margin-right: 3px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    padding: 8px;
+}
+
+.message-form-element label {
+    color: black;
+    font-size: 14px;
+}
+
+.message-form-element input {
+    color: black;
+    font-size: 12pt;
+    margin: 2px;
+}
+
+.message-form-element select {
+    color: black;
+    font-size: 12pt;
+    margin: 2px;
+}

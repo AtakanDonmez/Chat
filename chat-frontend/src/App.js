@@ -33,6 +33,11 @@ const eventDispatcher = {
     }
 }
 
+//TODO:
+// - stop refresh after submit
+// - The page doesnt update if post request sent from POSTMAN
+// - Message Form update
+
 function App() {
     return (
         <div className="App">

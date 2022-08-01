@@ -11,23 +11,25 @@ function MessageList(props) {
         sendRequest();
     }, [])
 
-    const senderLabel = (g) => {
-        return "?";
-    }
-
-    const toMessage = (m) => {
-        var g = "?";
+    const valueToLabel = (g) => {
+        var label = "?";
         for (var i = 0; i < props.senders.length; i++) {
-            if (props.senders[i].value == m.sender) {
-                g = props.senders[i].label;
+            if (props.senders[i].value == g) {
+                label = props.senders[i].label;
                 break;
             }
         }
+
+        return label;
+    }
+
+    const toMessage = (m) => {
+        var g = valueToLabel(m.sentTo);
         return (<tbody key={m.guid}>
         <tr>
             <td>{m.content}</td>
+            <td>{m.sender}</td>
             <td>{g}</td>
-            <td>{m.sentTo}</td>
             <td>{m.dateTime}</td>
         </tr>
         </tbody>);

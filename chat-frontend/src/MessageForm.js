@@ -5,8 +5,8 @@ var xhr;
 
 function MessageForm(props) {
     const [content, setContent] = useState('');
-    const [sender, setSender] = useState('john');
-    const [sentTo, setSentTo] = useState('noone');
+    const [sender, setSender] = useState('noone');
+    const [sentTo, setSentTo] = useState('john');
 
 
     const handleChangeContent = (event) => {
@@ -22,6 +22,10 @@ function MessageForm(props) {
     }
 
     const toSenderOption = (g) => {
+        return (<option key={g.value} value={g.value}>{g.label}</option>)
+    }
+
+    const toSentToOption = (g) => {
         return (<option key={g.value} value={g.value}>{g.label}</option>)
     }
 
@@ -48,9 +52,9 @@ function MessageForm(props) {
                     </label>
                 </span>
                 <span className="message-form-element">
-                    <label>Sender&nbsp;
-                        <select value={sender} onChange={handleChangeSender}>
-                            {props.senders.map(toSenderOption)}
+                    <label>Send to&nbsp;
+                        <select value={sentTo} onChange={handleChangeSentTo}>
+                            {props.senders.map(toSentToOption)}
                         </select>
                     </label>
                 </span>

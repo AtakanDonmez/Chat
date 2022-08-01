@@ -6,6 +6,7 @@ var xhr;
 function MessageForm(props) {
     const [content, setContent] = useState('');
     const [sender, setSender] = useState('john');
+    const [sentTo, setSentTo] = useState('noone');
 
 
     const handleChangeContent = (event) => {
@@ -16,14 +17,18 @@ function MessageForm(props) {
         setSender(event.target.value);
     }
 
+    const handleChangeSentTo = (event) => {
+        setSentTo(event.target.value);
+    }
+
     const toSenderOption = (g) => {
         return (<option key={g.value} value={g.value}>{g.label}</option>)
     }
 
     const tryCreateMessage = () => {
         xhr = new XMLHttpRequest();
-        xhr.open("POST", "http://localhost:8080/messages")
-        xhr.send(JSON.stringify({"content": content, "sender": sender}));
+        xhr.open("POST", "http://localhost:8080/messages");
+        xhr.send(JSON.stringify({"content": content, "sender": sender, "sentTo": sentTo}));
         xhr.addEventListener("readystatechange", processRequest, false);
     }
 

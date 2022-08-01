@@ -55,11 +55,12 @@ public class AppServer {
 
     private void postMessage(RoutingContext ctx, Vertx vertx) {
         final Message message = Json.decodeValue(ctx.getBodyAsString(), Message.class);
-        if (StringUtils.isEmpty(message.getSender()) || StringUtils.isEmpty(message.getContent())) {
+        if (StringUtils.isEmpty(message.getSender()) || StringUtils.isEmpty(message.getContent())
+                || StringUtils.isEmpty(message.getSentTo())) {
             ctx.response()
                     .setStatusCode(400)
                     .putHeader("content-type", "application/json")
-                    .end("{ 'error': 'Content and Sender must be non-empty' }");
+                    .end("{ 'error': 'Content, Sender and SentTo must be non-empty' }");
         }
         vertx.eventBus().request("service.message-add", Json.encode(message), res -> {
             if ( res.succeeded() ) {

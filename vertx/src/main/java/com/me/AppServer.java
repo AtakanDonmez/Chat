@@ -61,6 +61,7 @@ public class AppServer {
                     .setStatusCode(400)
                     .putHeader("content-type", "application/json")
                     .end("{ 'error': 'Content, Sender and SentTo must be non-empty' }");
+            return;
         }
         vertx.eventBus().request("service.message-add", Json.encode(message), res -> {
             if ( res.succeeded() ) {

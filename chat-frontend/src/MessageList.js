@@ -27,6 +27,8 @@ function MessageList(props) {
         <tr>
             <td>{m.content}</td>
             <td>{g}</td>
+            <td>{m.sentTo}</td>
+            <td>{m.dateTime}</td>
         </tr>
         </tbody>);
     }
@@ -53,6 +55,8 @@ function MessageList(props) {
             <tr>
                 <th>Message</th>
                 <th>Sender</th>
+                <th>SentTo</th>
+                <th>DateTime</th>
             </tr>
             </tbody>
             {messages?.map(toMessage)}

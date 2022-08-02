@@ -48,13 +48,14 @@ function MessageForm(props) {
         if (xhr.readyState === 4 && xhr.status === 200) {
             props.eventDispatcher.dispatch("addMessage", "")
             setContent("");
+
         }
     }
-    //TODO switch to hey app version of this
+
     return (
         <div className="chat-footer" style={{padding: 0}}>
-            <textarea id="messageTextArea" rows={1}
-                      placeholder="Type a new message" />
+            <textarea id="messageTextArea" rows={1} placeholder="Type a new message"
+                      value={content} onChange={handleChangeContent}/>
             <button type="primary" onClick={handleSendClick}>Send</button>
 
         </div>

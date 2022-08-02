@@ -5,3 +5,12 @@
     height: 80px;
     padding-left: 16px;
 }
+
+.chat-list-item-selected {
+    display: flex;
+    flex-direction: column;
+    margin: 8px;
+    height: 80px;
+    padding-left: 16px;
+    background-color: #0084ff;
+}

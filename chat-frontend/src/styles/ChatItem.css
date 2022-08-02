@@ -8,6 +8,7 @@
     justify-content: flex-end;
     display: flex;
     flex-direction: row;
+    padding-right: 5px;
 }
 .chat-item-other {
     display: flex;

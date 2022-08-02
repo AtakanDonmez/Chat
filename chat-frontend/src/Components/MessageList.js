@@ -1,6 +1,7 @@
 import '../styles/MessageList.css';
 import React, {useState, useEffect} from "react";
 import ChatItem from "./ChatItem";
+import Scrollbars from "react-custom-scrollbars-2";
 
 var xhr;
 
@@ -51,7 +52,9 @@ function MessageList(props) {
 
     return (
         <div className={"message-list"}>
-            {messages?.map(toMessage)}
+            <Scrollbars style={{height: "65vh", width: "100%"}}>
+                {messages?.map(toMessage)}
+            </Scrollbars>
         </div>
     );
 }

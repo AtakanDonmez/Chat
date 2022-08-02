@@ -46,9 +46,10 @@ function App() {
     return (
         <div className="App">
             <div className="chat-list-column">
-                <ChatList/>
+                <ChatList senders={senders}/>
             </div>
             <div className="message-panel-column">
+                <h1>Chat</h1>
                 <div className="message-list-row">
                     <MessageList senders={senders} eventDispatcher={eventDispatcher}/>
                 </div>

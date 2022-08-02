@@ -34,7 +34,7 @@ function MessageForm(props) {
     }
 
     const handleSendClick = (e) => {
-
+        tryCreateMessage();
     }
 
     const tryCreateMessage = () => {
@@ -53,7 +53,7 @@ function MessageForm(props) {
     //TODO switch to hey app version of this
     return (
         <div className="chat-footer" style={{padding: 0}}>
-            <textarea id="messageTextArea" onPressEnter={handleMessageEnter} rows={1}
+            <textarea id="messageTextArea" rows={1}
                       placeholder="Type a new message" />
             <button type="primary" onClick={handleSendClick}>Send</button>
 

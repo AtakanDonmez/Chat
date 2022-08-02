@@ -6,22 +6,23 @@ import ChatItem from "./ChatItem";
 function ChatList(props) {
 
     const [chats, setChats] = useState([]);
-    const [selectedChat, setSelectedChat] = useState(-1);
+    // const [selectedChat, setSelectedChat] = useState(-1);
 
     useEffect( () => {
         setChats(props.senders);
     }, [])
 
-    const handleChangeChat = (e, idx) => {
-        setSelectedChat(idx);
-    }
+    // const handleChangeChat = (e, idx) => {
+    //     setSelectedChat(idx);
+    // }
 
     const toChat = (m, idx) => {
-        var isSelected = idx === selectedChat;
+        var isSelected = idx === props.selectedChat;
         var cssClass = isSelected ? "chat-list-item-selected" : "chat-list-item"
         return (
             <div key={idx} className={cssClass}
-                 onClick={ (e) => handleChangeChat(e, idx)}>{m.label}</div>
+                 onClick={ (e) => props.handleChangeChat(e, idx)}>{m.label}
+            </div>
         );
     }
 

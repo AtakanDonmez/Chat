@@ -2,6 +2,7 @@ import '../styles/App.css';
 import MessageList from "./MessageList";
 import MessageForm from "./MessageForm";
 import ChatList from "./ChatList";
+import {useState} from "react";
 
 const senders = [
     {value: 'james', label: 'James'},
@@ -41,20 +42,31 @@ const eventDispatcher = {
 // - Message Form update
 // - New message scroll down like hey app message panel
 // - CSS Overhaul
+// - Define users on backend
 
 function App() {
+
+    const [selectedChat, setSelectedChat] = useState(-1);
+
+    const handleChangeChat = (e, idx) => {
+        setSelectedChat(idx);
+    }
+
     return (
         <div className="App">
             <div className="chat-list-column">
-                <ChatList senders={senders}/>
+                <ChatList senders={senders} handleChangeChat={handleChangeChat}
+                          selectedChat={selectedChat}/>
             </div>
             <div className="message-panel-column">
                 <h1>Chat</h1>
                 <div className="message-list-row">
-                    <MessageList senders={senders} eventDispatcher={eventDispatcher}/>
+                    <MessageList senders={senders} selectedChat={senders[selectedChat]?.value}
+                                 eventDispatcher={eventDispatcher}/>
                 </div>
                 <div className="message-form-row">
-                    <MessageForm senders={senders} eventDispatcher={eventDispatcher}/>
+                    <MessageForm senders={senders} sentTo={senders[selectedChat]?.value}
+                                 eventDispatcher={eventDispatcher}/>
                 </div>
             </div>
         </div>

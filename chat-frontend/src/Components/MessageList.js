@@ -1,4 +1,4 @@
-import './MessageList.css';
+import '../styles/MessageList.css';
 import React, {useState, useEffect} from "react";
 import ChatItem from "./ChatItem";
 

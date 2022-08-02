@@ -1,6 +1,7 @@
-import './App.css';
+import '../styles/App.css';
 import MessageList from "./MessageList";
 import MessageForm from "./MessageForm";
+import ChatList from "./ChatList";
 
 const senders = [
     {value: 'james', label: 'James'},
@@ -44,14 +45,16 @@ const eventDispatcher = {
 function App() {
     return (
         <div className="App">
-            <h1>
-                Chat
-            </h1>
-            <div>
-                <MessageList senders={senders} eventDispatcher={eventDispatcher} />
+            <div className="chat-list-column">
+                <ChatList/>
             </div>
-            <div>
-                <MessageForm senders={senders} eventDispatcher={eventDispatcher} />
+            <div className="message-panel-column">
+                <div className="message-list-row">
+                    <MessageList senders={senders} eventDispatcher={eventDispatcher}/>
+                </div>
+                <div className="message-form-row">
+                    <MessageForm senders={senders} eventDispatcher={eventDispatcher}/>
+                </div>
             </div>
         </div>
     );

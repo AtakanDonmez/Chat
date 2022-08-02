@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import './MessageForm.css';
+import '../styles/MessageForm.css';
 
 var xhr;
 
@@ -29,6 +29,14 @@ function MessageForm(props) {
         return (<option key={g.value} value={g.value}>{g.label}</option>)
     }
 
+    const handleMessageEnter = (e) => {
+
+    }
+
+    const handleSendClick = (e) => {
+
+    }
+
     const tryCreateMessage = () => {
         xhr = new XMLHttpRequest();
         xhr.open("POST", "http://localhost:8080/messages");
@@ -42,27 +50,14 @@ function MessageForm(props) {
             setContent("");
         }
     }
-
+    //TODO switch to hey app version of this
     return (
-        <>
-            <form className="message-form" onSubmit={tryCreateMessage}>
-                <span className="message-form-element">
-                    <label>Message&nbsp;
-                        <input type="text" value={content} onChange={handleChangeContent}/>
-                    </label>
-                </span>
-                <span className="message-form-element">
-                    <label>Send to&nbsp;
-                        <select value={sentTo} onChange={handleChangeSentTo}>
-                            {props.senders.map(toSentToOption)}
-                        </select>
-                    </label>
-                </span>
-                <span className="message-form-element">
-                    <input type="submit" value="Submit"/>
-                </span>
-            </form>
-        </>
+        <div className="chat-footer" style={{padding: 0}}>
+            <textarea id="messageTextArea" onPressEnter={handleMessageEnter} rows={1}
+                      placeholder="Type a new message" />
+            <button type="primary" onClick={handleSendClick}>Send</button>
+
+        </div>
     )
 
 }

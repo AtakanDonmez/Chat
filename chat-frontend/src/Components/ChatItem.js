@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import './ChatItem.css';
+import '../styles/ChatItem.css';
 
 function ChatItem(props) {
     const [showDate, setShowDate] = useState(false);

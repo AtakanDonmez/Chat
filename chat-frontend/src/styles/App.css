@@ -1,0 +1,31 @@
+.App {
+  background-color: #fff;
+  display: flex;
+  flex-direction: row;
+  font-size: calc(10px + 2vmin);
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+h1 {
+  color: #666666;
+  align-self: center;
+}
+
+.chat-list-column{
+  width: 15vw;
+}
+
+.message-panel-column {
+  display: flex;
+  flex-direction: column;
+  width: 85vw;
+}
+
+.message-list-row {
+  height: 90%;
+}
+
+.message-form-row {
+
+}

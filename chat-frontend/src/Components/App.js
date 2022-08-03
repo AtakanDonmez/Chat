@@ -43,6 +43,8 @@ const eventDispatcher = {
 // - New message scroll down like hey app message panel
 // - CSS Overhaul
 // - Define users on backend
+// - move filtering to backend
+// - implement sockets alongside http requests
 
 function App() {
 

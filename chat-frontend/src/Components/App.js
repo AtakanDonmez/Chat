@@ -54,6 +54,15 @@ function App() {
         setSelectedChat(idx);
     }
 
+    const ws = new WebSocket("ws://localhost:8080/");
+    ws.onopen = (event) => {
+        console.log("WebSocket opened");
+    };
+
+    ws.onmessage = (event) => {
+        console.log("ws message: " + event.data);
+    };
+
     return (
         <div className="App">
             <div className="chat-list-column">

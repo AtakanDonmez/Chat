@@ -32,6 +32,10 @@ public class AppServer {
 
         router.post("/messages").handler(ctx -> postMessage(ctx, vertx));
 
+        server.websocketHandler(websocket -> {
+            System.out.println("client connected: "+websocket.remoteAddress());
+        });
+
         server.requestHandler(router).listen(8080, http -> {
             if (http.succeeded()) {
                 LOGGER.info("MessageApp HTTP server started on port 8080");

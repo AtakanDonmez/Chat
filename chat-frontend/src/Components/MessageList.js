@@ -45,6 +45,7 @@ function MessageList(props) {
         if (xhr.readyState === 4 && xhr.status === 200) {
             var response = JSON.parse(xhr.responseText);
             setMessages(response);
+            // console.log("response:" + response);
         }
     }
 

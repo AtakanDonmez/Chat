@@ -3,6 +3,7 @@ import MessageList from "./MessageList";
 import MessageForm from "./MessageForm";
 import ChatList from "./ChatList";
 import {useState} from "react";
+import EventBus from "@vertx/eventbus-bridge-client.js";
 
 const senders = [
     {value: 'james', label: 'James'},
@@ -23,18 +24,27 @@ const senders = [
 
 const eventDispatcher = {
     listeners: {},
-    dispatch: function(event, data) {
+    dispatch: function (event, data) {
         if (this.listeners[event]) {
-            this.listeners[event].forEach(function(l) {
+            this.listeners[event].forEach(function (l) {
                 l(data);
             });
         }
     },
-    subscribe: function(event, f) {
+    subscribe: function (event, f) {
         if (!this.listeners[event]) this.listeners[event] = [];
         this.listeners[event].push(f)
     }
 }
+
+const eventBus = new EventBus('http://localhost:8080/eventbus');
+eventBus.onopen = function () {
+    eventBus.registerHandler('out', function (error, message) {
+        console.log("update chat");
+    });
+}
+
+const ws = new WebSocket("ws://localhost:8080/eventbus/websocket");
 
 //TODO:
 // - stop refresh after submit
@@ -54,7 +64,6 @@ function App() {
         setSelectedChat(idx);
     }
 
-    const ws = new WebSocket("ws://localhost:8080/");
     ws.onopen = (event) => {
         console.log("WebSocket opened");
     };

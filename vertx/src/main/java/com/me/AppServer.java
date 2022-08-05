@@ -7,11 +7,16 @@ import io.vertx.core.http.HttpServer;
 import io.vertx.core.json.Json;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
+import io.vertx.core.eventbus.EventBus;
+import io.vertx.core.shareddata.SharedData;
+import io.vertx.ext.bridge.PermittedOptions;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
 import io.vertx.ext.web.handler.BodyHandler;
 import io.vertx.ext.web.handler.StaticHandler;
 import io.vertx.ext.web.handler.CorsHandler;
+import io.vertx.ext.web.handler.sockjs.BridgeOptions;
+import io.vertx.ext.web.handler.sockjs.SockJSHandler;
 
 public class AppServer {
 
@@ -32,9 +37,10 @@ public class AppServer {
 
         router.post("/messages").handler(ctx -> postMessage(ctx, vertx));
 
-        server.websocketHandler(websocket -> {
-            System.out.println("client connected: "+websocket.remoteAddress());
-        });
+        router.route("/eventbus/*").handler(eventBusHandler(vertx));
+//        server.websocketHandler(websocket -> {
+//            System.out.println("client connected: "+websocket.remoteAddress());
+//        });
 
         server.requestHandler(router).listen(8080, http -> {
             if (http.succeeded()) {
@@ -78,4 +84,16 @@ public class AppServer {
         });
     }
 
+    private SockJSHandler eventBusHandler(Vertx vertx) {
+        BridgeOptions options = new BridgeOptions()
+                .addOutboundPermitted(new PermittedOptions().setAddressRegex("out"))
+                .addInboundPermitted(new PermittedOptions().setAddressRegex("in"));
+
+        SharedData data = vertx.sharedData();
+        EventBus eventBus = vertx.eventBus();
+        MessageHandler messageHandler = new MessageHandler(eventBus);
+
+        SockJSHandler sockJSHandler = SockJSHandler.create(vertx);
+        return sockJSHandler.bridge(options, messageHandler);
+    }
 }

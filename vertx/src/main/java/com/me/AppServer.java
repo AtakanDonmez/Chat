@@ -9,6 +9,7 @@ import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 import io.vertx.core.eventbus.EventBus;
 import io.vertx.core.shareddata.SharedData;
+import io.vertx.core.MultiMap;
 import io.vertx.ext.bridge.PermittedOptions;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
@@ -52,6 +53,10 @@ public class AppServer {
     }
 
     private void getMessage(RoutingContext ctx, Vertx vertx) {
+        MultiMap parameters = ctx.queryParams();
+        String sender = parameters.get("sender");
+        String sentTo = parameters.get("sentTo");
+        System.out.println("sender: " + sender + " sentTo: " + sentTo);
         vertx.eventBus().request("service.message-get", "", res -> {
             if ( res.succeeded() ) {
                 ctx.response()

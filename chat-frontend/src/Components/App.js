@@ -40,17 +40,15 @@ const eventDispatcher = {
 const eventBus = new EventBus('http://localhost:8080/eventbus');
 
 
-const ws = new WebSocket("ws://localhost:8080/eventbus/websocket");
+// const ws = new WebSocket("ws://localhost:8080/eventbus/websocket");
 
 //TODO:
-// - stop refresh after submit
-// - The page doesnt update if post request sent from POSTMAN
 // - Message Form update
 // - New message scroll down like hey app message panel
 // - CSS Overhaul
 // - Define users on backend
 // - move filtering to backend
-// - implement sockets alongside http requests
+
 
 function App() {
 
@@ -72,13 +70,13 @@ function App() {
         });
     }
 
-    ws.onopen = (event) => {
-        console.log("WebSocket opened");
-    };
-
-    ws.onmessage = (event) => {
-        console.log("ws message: " + event.data);
-    };
+    // ws.onopen = (event) => {
+    //     console.log("WebSocket opened");
+    // };
+    //
+    // ws.onmessage = (event) => {
+    //     console.log("ws message: " + event.data);
+    // };
 
     return (
         <div className="App">

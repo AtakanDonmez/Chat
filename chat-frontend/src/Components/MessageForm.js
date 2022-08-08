@@ -44,7 +44,7 @@ function MessageForm(props) {
         if (xhr.readyState === 4 && xhr.status === 200) {
             props.eventDispatcher.dispatch("addMessage", "")
             setContent("");
-
+            props.updateChat();
         }
     }
 

@@ -38,11 +38,7 @@ const eventDispatcher = {
 }
 
 const eventBus = new EventBus('http://localhost:8080/eventbus');
-eventBus.onopen = function () {
-    eventBus.registerHandler('out', function (error, message) {
-        console.log("update chat");
-    });
-}
+
 
 const ws = new WebSocket("ws://localhost:8080/eventbus/websocket");
 
@@ -59,9 +55,21 @@ const ws = new WebSocket("ws://localhost:8080/eventbus/websocket");
 function App() {
 
     const [selectedChat, setSelectedChat] = useState(-1);
+    const [chatUpdater, setChatUpdater] = useState(false);
 
     const handleChangeChat = (e, idx) => {
         setSelectedChat(idx);
+    }
+
+    const updateChat = () => {
+        eventBus.send('in');
+    }
+
+    eventBus.onopen = function () {
+        eventBus.registerHandler('out', function (error, message) {
+            setChatUpdater(prevState => !prevState);
+            console.log("update chat: " + chatUpdater);
+        });
     }
 
     ws.onopen = (event) => {
@@ -82,11 +90,11 @@ function App() {
                 <h1>Chat</h1>
                 <div className="message-list-row">
                     <MessageList senders={senders} selectedChat={senders[selectedChat]?.value}
-                                 eventDispatcher={eventDispatcher}/>
+                                 eventDispatcher={eventDispatcher} chatUpdater={chatUpdater}/>
                 </div>
                 <div className="message-form-row">
                     <MessageForm senders={senders} sentTo={senders[selectedChat]?.value}
-                                 eventDispatcher={eventDispatcher}/>
+                                 eventDispatcher={eventDispatcher} updateChat={updateChat}/>
                 </div>
             </div>
         </div>

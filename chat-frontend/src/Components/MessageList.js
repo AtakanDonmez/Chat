@@ -11,7 +11,7 @@ function MessageList(props) {
 
     useEffect(() => {
         sendRequest();
-    }, [props.selectedChat]);
+    }, [props.selectedChat, props.chatUpdater]);
 
     const valueToLabel = (g) => {
         var label = "?";

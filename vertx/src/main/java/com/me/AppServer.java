@@ -8,6 +8,7 @@ import io.vertx.core.json.Json;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 import io.vertx.core.eventbus.EventBus;
+import io.vertx.core.eventbus.DeliveryOptions;
 import io.vertx.core.shareddata.SharedData;
 import io.vertx.core.MultiMap;
 import io.vertx.ext.bridge.PermittedOptions;
@@ -56,14 +57,17 @@ public class AppServer {
         MultiMap parameters = ctx.queryParams();
         String sender = parameters.get("sender");
         String sentTo = parameters.get("sentTo");
-        System.out.println("sender: " + sender + " sentTo: " + sentTo);
-        vertx.eventBus().request("service.message-get", "", res -> {
+//        System.out.println("sender: " + sender + " sentTo: " + sentTo);
+        DeliveryOptions options = new DeliveryOptions();
+        options.addHeader("sender", sender);
+        options.addHeader("sentTo", sentTo);
+        vertx.eventBus().request("service.message-get", "", options, res -> {
             if ( res.succeeded() ) {
                 ctx.response()
                         .putHeader("content-type", "application/json")
                         .end( res.result().body().toString() );
             } else {
-                ctx.fail( res.cause() );
+                ctx.fail(res.cause());
             }
         });
     }

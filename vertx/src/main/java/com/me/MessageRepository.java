@@ -28,7 +28,17 @@ public class MessageRepository extends AbstractVerticle {
         });
 
         vertx.eventBus().consumer("service.message-get", msg -> {
-            msg.reply(Json.encode(MESSAGE_LIST));
+            List<Message> matching_messages = new ArrayList<>();
+            String sender = msg.headers().get("sender");
+            String sentTo = msg.headers().get("sentTo");
+            for (int i = 0; i < MESSAGE_LIST.size(); i++) {
+                if ( (MESSAGE_LIST.get(i).getSender().equals(sender) && MESSAGE_LIST.get(i).getSentTo().equals(sentTo))
+                    || (MESSAGE_LIST.get(i).getSender().equals(sentTo) && MESSAGE_LIST.get(i).getSentTo().equals(sender)) ){
+                    matching_messages.add(MESSAGE_LIST.get(i));
+                }
+            }
+//            System.out.println("sender: " + msg.headers().get("sender") + " sentTo: " + msg.headers().get("sentTo"));
+            msg.reply(Json.encode(matching_messages));
         });
     }
 

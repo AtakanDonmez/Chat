@@ -1,5 +1,5 @@
 import '../styles/MessageList.css';
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import ChatItem from "./ChatItem";
 import Scrollbars from "react-custom-scrollbars-2";
 
@@ -9,9 +9,15 @@ function MessageList(props) {
 
     const [messages, setMessages] = useState([]);
 
+    const scroller = useRef(null);
+
     useEffect(() => {
         sendRequest();
     }, [props.selectedChat, props.chatUpdater]);
+
+    useEffect( () => {
+        scroller.current.scrollToBottom();
+    }, [messages]);
 
     const valueToLabel = (g) => {
         var label = "?";
@@ -54,7 +60,7 @@ function MessageList(props) {
 
     return (
         <div className={"message-list"}>
-            <Scrollbars style={{height: "65vh", width: "100%"}}>
+            <Scrollbars style={{height: "65vh", width: "100%"}} ref={scroller}>
                 {messages?.map(toMessage)}
             </Scrollbars>
         </div>

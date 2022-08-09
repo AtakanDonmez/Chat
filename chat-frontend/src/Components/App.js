@@ -43,11 +43,21 @@ const eventBus = new EventBus('http://localhost:8080/eventbus');
 // const ws = new WebSocket("ws://localhost:8080/eventbus/websocket");
 
 //TODO:
-// - Message Form update
-// - New message scroll down like hey app message panel
-// - CSS Overhaul
+// - send message on enter
+// - show only the chats that have messages (add "any" to the get request)
+// - new chat creation
+// - show last messages on chats
+// - show chats with new notifications on the chatlist
 // - Define users on backend
+// - avatar?
+// - widget
+// - postgresql
+// - message time like twitter or wa?
+// - message day separators?
+
+// DONE DoD:
 // - move filtering to backend
+// - New message scroll down like hey app message panel
 
 
 function App() {

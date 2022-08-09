@@ -48,10 +48,17 @@ function MessageForm(props) {
         }
     }
 
+    const onEnterPress = (e) => {
+        if (e.keyCode == 13 && e.shiftKey == false) {
+            e.preventDefault();
+            handleSendClick();
+        }
+    }
+
     return (
         <div className="chat-footer" style={{padding: 0}}>
             <textarea id="messageTextArea" rows={1} placeholder="Type a new message"
-                      value={content} onChange={handleChangeContent}/>
+                      value={content} onChange={handleChangeContent} onKeyDown={onEnterPress}/>
             <button type="primary" onClick={handleSendClick}>Send</button>
 
         </div>

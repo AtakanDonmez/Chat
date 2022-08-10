@@ -33,7 +33,7 @@ function MessageList(props) {
 
     const toMessage = (m, idx) => {
         var g = valueToLabel(m.sentTo);
-        var type = m.sender == "noone";
+        var type = m.sender == props.activeUser;
         return (
             <ChatItem key={idx} type={type} content={m.content} date={m.dateTime} sender={m.sender}
                       sentTo={g}/>
@@ -42,7 +42,7 @@ function MessageList(props) {
 
     const sendRequest = () => {
         xhr = new XMLHttpRequest();
-        var params = "sender=" + "noone" + "&sentTo=" + props.selectedChat;
+        var params = "sender=" + props.activeUser + "&sentTo=" + props.selectedChat;
         xhr.open("GET", "http://localhost:8080/messages?" + params);
         xhr.send();
         xhr.addEventListener("readystatechange", processRequest, false);
@@ -60,7 +60,8 @@ function MessageList(props) {
 
     return (
         <div className={"message-list"}>
-            <Scrollbars style={{height: "65vh", width: "100%"}} ref={scroller}>
+            <Scrollbars style={{height: "65vh", width: "100%"}} ref={scroller} autoHide
+            autoHideTimeout={1000} autoHideDuration={200}>
                 {messages?.map(toMessage)}
             </Scrollbars>
         </div>

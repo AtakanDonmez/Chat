@@ -11,12 +11,12 @@
     border: none;
     resize: none;
     border-radius: 0;
+    width: 80%;
 }
 
 .chat-footer textarea:focus, .chat-footer textarea:active {
     border: none;
     box-shadow: none;
-
 }
 
 .chat-footer button {

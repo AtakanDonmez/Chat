@@ -5,28 +5,10 @@ var xhr;
 
 function MessageForm(props) {
     const [content, setContent] = useState('');
-    const [sender, setSender] = useState('noone');
 
 
     const handleChangeContent = (event) => {
         setContent(event.target.value);
-    }
-
-    const handleChangeSender = (event) => {
-        setSender(event.target.value);
-    }
-
-
-    const toSenderOption = (g) => {
-        return (<option key={g.value} value={g.value}>{g.label}</option>)
-    }
-
-    const toSentToOption = (g) => {
-        return (<option key={g.value} value={g.value}>{g.label}</option>)
-    }
-
-    const handleMessageEnter = (e) => {
-
     }
 
     const handleSendClick = (e) => {
@@ -36,7 +18,7 @@ function MessageForm(props) {
     const tryCreateMessage = () => {
         xhr = new XMLHttpRequest();
         xhr.open("POST", "http://localhost:8080/messages");
-        xhr.send(JSON.stringify({"content": content, "sender": sender, "sentTo": props.sentTo}));
+        xhr.send(JSON.stringify({"content": content, "sender": props.activeUser, "sentTo": props.sentTo}));
         xhr.addEventListener("readystatechange", processRequest, false);
     }
 

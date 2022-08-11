@@ -1,0 +1,7 @@
+.chat-header {
+    display: flex;
+    flex-direction: row;
+    margin: 8px 80px;
+    height: 80px;
+    padding-left: 16px;
+}

@@ -4,6 +4,7 @@ import MessageForm from "./MessageForm";
 import ChatList from "./ChatList";
 import {useState} from "react";
 import EventBus from "@vertx/eventbus-bridge-client.js";
+import ChatHeader from "./ChatHeader";
 
 const senders = [
     {value: 'james', label: 'James'},
@@ -43,11 +44,11 @@ const eventBus = new EventBus('http://localhost:8080/eventbus');
 // - message time like twitter or wa?
 // - message day separators?
 // - dont allow messaging yourself
-// - header
 
 // DONE DoD:
 // - will define users and messages on backend.
 // - Add avatars
+// - header
 // Şu anda bütün odaları direk gösteriyo arka tarafta
 // odaları ve mesajları checkleyerek sadece aktif chatleri display etsin.
 // olmayan odaları da compose new message diyerek açacak
@@ -81,7 +82,7 @@ function App() {
                           selectedChat={selectedChat}/>
             </div>
             <div className="message-panel-column">
-                <h1>Chat</h1>
+                <ChatHeader senders={senders} selectedChat={senders[selectedChat]?.label} />
                 <div className="message-list-row">
                     <MessageList senders={senders} selectedChat={senders[selectedChat]?.value}
                                  eventDispatcher={eventDispatcher} chatUpdater={chatUpdater}

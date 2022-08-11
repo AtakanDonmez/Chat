@@ -1,6 +1,6 @@
 .chat-list-item {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     margin: 8px;
     height: 80px;
     padding-left: 16px;
@@ -8,7 +8,7 @@
 
 .chat-list-item-selected {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     margin: 8px;
     height: 80px;
     padding-left: 16px;

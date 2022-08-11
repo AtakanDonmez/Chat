@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import '../styles/ChatList.css';
 import Scrollbars from "react-custom-scrollbars-2";
+import Ravatar from 'react-avatar';
 import ChatItem from "./ChatItem";
 
 function ChatList(props) {
@@ -21,7 +22,9 @@ function ChatList(props) {
         var cssClass = isSelected ? "chat-list-item-selected" : "chat-list-item"
         return (
             <div key={idx} className={cssClass}
-                 onClick={ (e) => props.handleChangeChat(e, idx)}>{m.label}
+                 onClick={ (e) => props.handleChangeChat(e, idx)}>
+                <Ravatar name={m.label} size="50" round={true}/>
+                <div style={{margin: "8px", overflow: "hidden"}}>{m.label}</div>
             </div>
         );
     }

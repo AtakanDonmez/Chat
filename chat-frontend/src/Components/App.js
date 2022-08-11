@@ -46,9 +46,11 @@ const eventBus = new EventBus('http://localhost:8080/eventbus');
 // - header
 
 // DONE DoD:
-// - Scrollbar auto-hide
-// - websocket only alerts appropriate chats for privacy
-// - hardcoded session -
+// - will define users and messages on backend.
+// - Add avatars
+// Şu anda bütün odaları direk gösteriyo arka tarafta
+// odaları ve mesajları checkleyerek sadece aktif chatleri display etsin.
+// olmayan odaları da compose new message diyerek açacak
 
 
 function App() {

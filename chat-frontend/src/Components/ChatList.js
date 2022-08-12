@@ -24,7 +24,8 @@ function ChatList(props) {
             <div key={idx} className={cssClass}
                  onClick={ (e) => props.handleChangeChat(e, idx)}>
                 <Ravatar name={m.label} size="50" round={true}/>
-                <div style={{margin: "8px", overflow: "hidden"}}>{m.label}</div>
+                <div style={{margin: "8px", overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis"}}>
+                    {m.label}</div>
             </div>
         );
     }

@@ -6,14 +6,14 @@ import {useState} from "react";
 import EventBus from "@vertx/eventbus-bridge-client.js";
 import ChatHeader from "./ChatHeader";
 
-const senders = [
-    {value: 'james', label: 'James'},
-    {value: 'robert', label: 'Robert'},
-    {value: 'john', label: 'John'},
-    {value: 'mary', label: 'Mary'},
-    {value: 'patricia', label: 'Patricia'},
-    {value: 'noone', label: 'NOONE'}
-]
+// const senders = [
+//     {value: 'james', label: 'James'},
+//     {value: 'robert', label: 'Robert'},
+//     {value: 'john', label: 'John'},
+//     {value: 'mary', label: 'Mary'},
+//     {value: 'patricia', label: 'Patricia'},
+//     {value: 'noone', label: 'NOONE'}
+// ]
 
 const eventDispatcher = {
     listeners: {},
@@ -59,6 +59,14 @@ function App() {
     const [selectedChat, setSelectedChat] = useState(-1);
     const [chatUpdater, setChatUpdater] = useState(false);
     const [activeUser, setActiveUser] = useState("noone");
+    const [senders, setSenders] = useState([
+        {value: 'james', label: 'James'},
+        {value: 'robert', label: 'Robert'},
+        {value: 'john', label: 'John'},
+        {value: 'mary', label: 'Mary Poppins'},
+        {value: 'patricia', label: 'Patricia'},
+        {value: 'noone', label: 'NOONE'}
+    ]);
 
     const handleChangeChat = (e, idx) => {
         setSelectedChat(idx);

@@ -11,7 +11,7 @@ function ChatList(props) {
 
     useEffect( () => {
         setChats(props.senders);
-    }, [])
+    }, [props.senders])
 
     // const handleChangeChat = (e, idx) => {
     //     setSelectedChat(idx);

@@ -1,7 +1,19 @@
-# Chat
-Chat widget implemented with ReactJS for FE &amp; Vert.x for BE
+# Chat App with Vert.x BE & ReactJS FE
 
-Inside the "vertx" folder:
-$mvn compile exec:java
-Inside the "chat-frontend" folder:
-$npm start
+Chat widget implemented with ReactJS for FE & Vert.x for BE
+
+## Open two terminals and execute the following commands
+
+### Terminal 1
+```
+cd vertx
+mvn package (only the first time)
+mvn clean install (only the first time)
+mvn compile exec:java
+```
+### Terminal 2
+```
+cd chat-frontend
+npm install (only the first time)
+npm start
+```
